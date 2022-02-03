@@ -51,6 +51,7 @@
                 method:'get',  
                 dataType:'json',
                 success:function(response){
+                    console.log(response)
                         searchData = "";
                         response.data.forEach((data, index) => {
                             allData(data, index);
