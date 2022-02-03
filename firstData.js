@@ -23,7 +23,19 @@ const list = [
         "title": "The Lock Artist",
         "author": "Steve",
         "tags": ["power"]
-    }
+    } {
+        "title": "this is values",
+        "author": "contry ",
+        "tags": ["something else"]
+    }, {
+        "title": "this is laptop",
+        "author": "america",
+        "tags": ["india"]
+    }, {
+        "title": "this is wrong",
+        "author": "something",
+        "tags": ["fic"]
+    },
 ]
 const options = {
     includeScore: true,
