@@ -23,7 +23,7 @@ const list = [
         "title": "The Lock Artist",
         "author": "Steve",
         "tags": ["power"]
-    } {
+    }, {
         "title": "this is values",
         "author": "contry ",
         "tags": ["something else"]
