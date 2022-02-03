@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,26 +11,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>fuzzy search app</title>
 </head>
+
 <body>
     <div class="container">
         <form id="searchForm">
             <div class="form-group">
                 <label>Search Text</label>
-                <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Enter Search Text">
+                <input type="text" class="form-control" id="searchText" name="searchText"
+                    placeholder="Enter Search Text">
             </div>
             <button type="button" id="uploadSubmit" class="btn btn-default">Submit</button>
         </form>
 
         <table class="table">
             <thead>
-              <tr>
-                <th>S.No.</th>
-                <th>Data</th>
-              </tr>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Data</th>
+                </tr>
             </thead>
             <tbody>
             </tbody>
-          </table>
+        </table>
 
     </div>
 </body>
@@ -38,46 +41,36 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         function _(el) {
             return document.getElementById(el);
         }
         let searchData = "";
-        $(document).on('click', '#uploadSubmit', function(){
+        $(document).on('click', '#uploadSubmit', function () {
             let query = _("searchText").value;
-            $.ajax({  
-                url:'/users/query/?query='+query,  
-                method:'get',  
-                dataType:'json',
-                success:function(response){
+            $.ajax({
+                url: '/fuzzy/query/?query=' + query,
+                method: 'get',
+                dataType: 'json',
+                success: function (response) {
                     console.log(response)
-                        searchData = "";
-                        response.data.forEach((data, index) => {
-                            allData(data, index);
-                        });
-                        $('tbody').html(searchData);
-                    }
+                    searchData = "";
+                    response.forEach((data, index) => {
+                        allData(data, index);
+                    });
+                    $('tbody').html(searchData);
+                }
             })
         })
 
-        function allData(data, index){
-
+        function allData(data, index) {
             searchData += '<tr>';
-            searchData += '<td>'+(index+1)+'</td>';
-                let list=['1','2','3','4','5','6','7','8','9','10','11','12','13']
-                let key=0
-                console.log('upperloop')
-                for(i of list){
-                 key++
-                    var a="key"+i
-                    console.log('innerloop')
-                if(data.item[a]){
-                    console.log(data.item[a])
-                    console.log('inner ifelse')
-            searchData += '<td>'+data.item[a]+'</td>'}
-                }
-            searchData += '</tr>';
-        }
+            searchData += '<td>' + (index + 1) + '</td>';
+            searchData += '<td>' + data.item.title  + '</td>'
+            searchData += '<td>' + data.item.author + '</td>'
+            searchData += '<td>' + data.item.tags + '</td>'
+        searchData += '</tr>';
+    }
     })
 </script>

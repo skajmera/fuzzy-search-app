@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 require("express-async-errors");
 const userRouters = require("./routers/router.user");
+const fuzzyRouters = require("./firstData");
+
 const app = express();
 const morgan = require("morgan");
 const middleware = require("./utils/middleware");
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use("/users", userRouters);
+app.use("/fuzzy", fuzzyRouters);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
