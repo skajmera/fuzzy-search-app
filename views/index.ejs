@@ -50,11 +50,11 @@
         $(document).on('click', '#uploadSubmit', function () {
             let query = _("searchText").value;
             $.ajax({
-                url: '/fuzzy/query/?query=' + query,
+                url: '/fuzzy/query/?query='+ query,
                 method: 'get',
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response)
+                    console.log('response',response[0])
                     searchData = "";
                     response.forEach((data, index) => {
                         allData(data, index);
@@ -67,9 +67,9 @@
         function allData(data, index) {
             searchData += '<tr>';
             searchData += '<td>' + (index + 1) + '</td>';
-            searchData += '<td>' + data.item.title  + '</td>'
-            searchData += '<td>' + data.item.author + '</td>'
-            searchData += '<td>' + data.item.tags + '</td>'
+            searchData += '<td>' + data.title  + '</td>'
+            searchData += '<td>' + data.author + '</td>'
+            searchData += '<td>' + data.tags + '</td>'
         searchData += '</tr>';
     }
     })

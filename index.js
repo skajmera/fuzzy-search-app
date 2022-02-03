@@ -34,10 +34,3 @@ app.listen(PORT, () => {
   console.log(`YOUR SERVER IS WORKING AT PORT ${PORT}`);
 });
 
-
-// const li=[1,2,3,4,5]
-// let a=0
-// while(a<li.length){
-//   console.log(a);
-//   a++;
-// }
