@@ -20,11 +20,6 @@ app.set('views', path.join(__dirname, '/views/'));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
-
-// app.get('/',(req,res)=>{
-//   res.render('index');
-// })
-////////////
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
@@ -35,3 +30,11 @@ app.use(middleware.errorHandler);
 app.listen(PORT, () => {
   console.log(`YOUR SERVER IS WORKING AT PORT ${PORT}`);
 });
+
+
+// const li=[1,2,3,4,5]
+// let a=0
+// while(a<li.length){
+//   console.log(a);
+//   a++;
+// }

@@ -64,13 +64,16 @@
 
             searchData += '<tr>';
             searchData += '<td>'+(index+1)+'</td>';
-                let list=['1','2','3','4','5','6']
+                let list=['1','2','3','4','5','6','7','8','9','10','11','12','13']
                 let key=0
+                console.log('upperloop')
                 for(i of list){
                  key++
                     var a="key"+i
+                    console.log('innerloop')
                 if(data.item[a]){
                     console.log(data.item[a])
+                    console.log('inner ifelse')
             searchData += '<td>'+data.item[a]+'</td>'}
                 }
             searchData += '</tr>';
