@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>fuzzy search app</title>
+</head>
+<body>
+    <div class="container">
+        <form id="searchForm">
+            <div class="form-group">
+                <label>Search Text</label>
+                <input type="text" class="form-control" id="searchText" name="searchText" placeholder="Enter Search Text">
+            </div>
+            <button type="button" id="uploadSubmit" class="btn btn-default">Submit</button>
+        </form>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th>S.No.</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+    </div>
+</body>
+
+</html>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        function _(el) {
+            return document.getElementById(el);
+        }
+        let searchData = "";
+        $(document).on('click', '#uploadSubmit', function(){
+            let query = _("searchText").value;
+            $.ajax({  
+                url:'/users/query/?query='+query,  
+                method:'get',  
+                dataType:'json',
+                success:function(response){
+                        searchData = "";
+                        response.data.forEach((data, index) => {
+                            allData(data, index);
+                        });
+                        $('tbody').html(searchData);
+                    }
+            })
+        })
+
+        function allData(data, index){
+
+            searchData += '<tr>';
+            searchData += '<td>'+(index+1)+'</td>';
+                let list=['1','2','3','4','5','6']
+                let key=0
+                for(i of list){
+                 key++
+                    var a="key"+i
+                if(data.item[a]){
+                    console.log(data.item[a])
+            searchData += '<td>'+data.item[a]+'</td>'}
+                }
+            searchData += '</tr>';
+        }
+    })
+</script>
