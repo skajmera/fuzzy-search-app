@@ -5,7 +5,7 @@ const findUser = async (req) => {
         const user=await User.find({})
         const fuse = new Fuse(user, {
           keys: ['key3','key1','key2','key6','key4.key5']})
-      const result = fuse.search(req.query.query)
+      const result = await fuse.search(req.query.query)
       console.log(result)
       return result
     }
